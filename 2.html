@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lap 2</title>
+    <style>
+        .payment {
+            background-color: rgb(207, 207, 207);
+            width: fit-content;
+            padding: 20px 40px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payment">
+        <h1>Dental Playment Form</h1>
+        <form id="form">
+            <label for="name">Tên khách hàng</label>
+            <input type="text" name="name">
+            <div class="list">
+                <div class="item">
+                    <div>
+                        <input type="checkbox" id="caoVoi" name="caoVoi" value="caoVoied">
+                        <label for="caoVoi">Cạo vôi</label>
+                    </div>
+                    <p>$100.00</p>
+                </div>
+                <div class="item">
+                    <div>
+                        <input type="checkbox" id="tayTrang" name="tayTrang" value="tayTranged">
+                        <label for="tayTrang">Tẩy trắng</label>
+                    </div>
+                    <p>$1.200.00</p>
+                </div>
+                <div class="item">
+                    <div>
+                        <input type="checkbox" id="rang" name="rang" value="ranged">
+                        <label for="rang">Chụp hình răng</label>
+                    </div>
+                    <p>$200.00</p>
+
+                </div>
+                <div class="item">
+                    <div>
+                        <label for="tramTrang">Trám răng</label>
+                        <input type="number" style="width: 40px;" name="tramTrang" value="0">
+                    </div>
+                    <p>$80.00/cái</p>
+                </div>
+            </div>
+            <div class="total" style="text-align: right;">
+                <label for="totle">Total</label>
+                <input type="text" name="total">
+            </div>
+            <div class="feature" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <button>Thoát</button>
+                <button onclick="tinhTien()">Tính tiền</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const giaCaoVoi = 100;
+        const giaTayTrang = 1200;
+        const giaChupHinh = 200;
+        const giaTramRang = 80;
+        function tinhTien() {
+            event.preventDefault();
+            let total = 0;
+            var form = document.getElementById('form');
+            var name = form.elements.namedItem("name");
+            var caoVoi = form.elements.namedItem("caoVoi").checked;
+            var tayTrang = form.elements.namedItem("tayTrang").checked;
+            var rang = form.elements.namedItem("rang").checked;
+            var tramTrang = form.elements.namedItem("tramTrang").value * giaTramRang;
+            if (caoVoi) { total += giaCaoVoi };
+            if (tayTrang) { total += giaTayTrang };
+            if (rang) { total += giaChupHinh };
+            total += tramTrang;
+            form.elements.namedItem("total").value = total + '$';
+        }
+    </script>
+</body>
+
+</html>
